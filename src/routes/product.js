@@ -14,6 +14,8 @@ router.post('/insert',upload.array('image',12), productController.inserts);
 
 // router.get('/update/:id', productController.edit);
 
-// router.get('/', productController.index);
+router.get('/detail', productController.detail);
+
+router.get('/', productController.index);
 
 module.exports = router;

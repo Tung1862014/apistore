@@ -32,18 +32,18 @@ app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//   })
+// );
 
 app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'video')));
 
-//app.use(cors());
+app.use(cors());
 
 app.use(
   express.urlencoded({
