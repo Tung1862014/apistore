@@ -3,6 +3,7 @@ const Staff = require('../models/Staff');
 //     multipleMongooseToObject,
 //     mongooseToObject,
 // } = require('../../util/mongoose');
+const db = require('../../models')
 const dbConn = require('../../config/db');
 const Database = require('../../config/Database')
 let mydb = new Database(dbConn);
@@ -26,15 +27,6 @@ class StaffController {
             
                     });
             });
-        // Promise.all([Staff.find({}), req.cookies.nameuser])
-
-        //     .then(([users, usecooki]) => {
-        //         res.render('staff', {
-        //             users: multipleMongooseToObject(users),
-        //             usecooki,
-        //         });
-        //     })
-        //     .catch(next);
     }
     search(req, res, next) {
         //res.json(req.query.name)
@@ -94,7 +86,15 @@ class StaffController {
         //res.json(req.body.password);
         const formData = req.body;
         //const user = new Staff(formData);
-        Promise.all([ mydb.query(`INSERT INTO nguoidung(tennd, password, email) VALUES ('${formData.tennd}','${formData.password}','${formData.email}')`)])
+        Promise.all([ db.User.create({
+            firstName: formData.firstName,
+            lastName: 'Tran',
+            email: formData.email,
+            password: formData.password,
+            address: 'Can Tho',
+            phone: '0123456789',
+            roleid: 'B',
+        })])
         .then(([ results]) =>
             // res.json({numbers,results}),
 

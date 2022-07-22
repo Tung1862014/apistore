@@ -6,6 +6,7 @@ const app = express();
 const methodOverride = require('method-override');
 const passportSetup = require("./passport");
 const passport = require('passport');
+const connectDB = require('./config/connectDB');
 
 const cors = require('cors');
 
@@ -16,16 +17,18 @@ const route = require('./routes');
 const db = require('./config/db');
 
 //connect to DB
-function connect() {
-    db.connect((err) =>{
-    if (err)
-        console.log('connect failure !!');
-    else
-        console.log("Connected!");
-    });
-};
+// function connect() {
+//     db.connect((err) =>{
+//     if (err)
+//         console.log('connect failure !!');
+//     else
+//         console.log("Connected!");
+//     });
+// };
 
-connect();
+// connect();
+
+connectDB();
 
 
 app.use(cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 }));

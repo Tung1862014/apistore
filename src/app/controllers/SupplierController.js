@@ -23,16 +23,6 @@ class SupplierController {
             
                     });
             });
-        // Promise.all([Supplier.find(), req.cookies.nameuser])
-
-        //     // res.send(deletedAt)
-        //     .then(([suppliers, usecooki]) => {
-        //         res.render('supplier', {
-        //             suppliers: multipleMongooseToObject(suppliers),
-        //             usecooki,
-        //         });
-        //     })
-        //     .catch(next);
     }
 
     // //[Get] /update
@@ -89,31 +79,6 @@ class SupplierController {
             .then(() => res.redirect('back'))
             .catch(next);
     }
-
-    // [DELETE] /delete/save/:id/force
-    // forceDelete(req, res, next) {
-    //     Supplier.deleteOne({ _id: req.params.id })
-    //         .then(() => res.redirect('back'))
-    //         .catch(next);
-    // }
-    //[GET] /trash
-    // trashSupplier(req, res, next) {
-    //     Supplier.findDeleted()
-    //         // res.send(deletedAt)
-    //         .then((suppliers) => {
-    //             res.render('suppliers/trash', {
-    //                 suppliers: multipleMongooseToObject(suppliers),
-    //             });
-    //         })
-    //         .catch(next);
-    // }
-
-    //[PATCH] /supplier/:id/restore
-    // restore(req, res, next) {
-    //     Supplier.restore({ _id: req.params.id })
-    //         .then(() => res.redirect('back'))
-    //         .catch(next);
-    // }
 }
 
 module.exports = new SupplierController();

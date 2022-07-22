@@ -16,17 +16,11 @@ function route(app) {
     app.use('/auth', loginRoute);
     app.use('/product', productRoute);
     // app.use('/type', typeRoute);
+    app.use('/', homeRoute);
     app.use('/home', homeRoute);
 
     app.use('/chart', chartRoute);
 
-    // app.get('/', function (req, res, next) {
-    //     console.log('Request URL:')
-    //     next()
-    //   }, function (req, res, next) {
-    //     console.log('Request Type')
-    //     next()
-    //   });
 }
 
 module.exports = route;

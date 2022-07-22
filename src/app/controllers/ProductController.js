@@ -12,58 +12,29 @@ const Database = require('../../config/Database');
 
 let mydb = new Database(dbConn);
 
+const db = require('../../models')
 class ProductController {
-    //[GET]  /product
-    // index(req, res, next) {
-    //     //
-    //     //res.send(req.query.page)
-    //     // // res.send('Product  !!!!');
-    //     var perPage = 5;
-    //     var page = req.query.page || 1;
-    //     Product.find({})
-    //             .skip((perPage * page) - perPage)
-    //             .limit(perPage).exec(function(err,products){
-    //                 if(err) throw err;
-    //                 Product.countDocuments({}).exec((err,Count)=>{          
-    //                     res.render('product', {
-    //                         products: multipleMongooseToObject(products),
-    //                         pagination:{page, pageCount:Math.ceil(Count / perPage) },
-    //                         usecooki:req.cookies.nameuser,
-    //                     });
-            
-    //                 });
-    //         });
-    //     // Promise.all([Product.find({}), req.cookies.nameuser])
-    //     //     .then(([products, usecooki]) => {
-    //     //         // res.json(products)
-    //     //         res.render('product', {
-    //     //             products: multipleMongooseToObject(products),
-    //     //             usecooki,
-    //     //         });
-    //     //     })
-    //     //     .catch(next);
-    // }
-
     index(req, res, next){
-        Promise.all([ mydb.query(`SELECT * FROM sanpham`)])
+        Promise.all([db.Product.findAll()])
         .then(([results]) =>
             // res.json({numbers,results}),
-
             res.json(
                 results
             )
         )
+        .catch((err) =>{
+            console.error(err)
+        })
     }
 
     detail(req, res, next){
-        //res.json(req.query.q)
-        Promise.all([ mydb.query(`SELECT * FROM sanpham where idsp=${req.query.q}`)])
+        // shortres.json(req.query.q)
+        Promise.all([db.Product.findOne({where: {idSP: req.query.q}})])
         .then(([results]) =>
             // res.json({numbers,results}),
-
             res.json(
                 results
-            )
+            ) 
         )
     }
 

@@ -23,15 +23,6 @@ class StaffController {
             
                     });
             });
-        // Promise.all([Staff.find({}), req.cookies.nameuser])
-
-        //     .then(([users, usecooki]) => {
-        //         res.render('staff', {
-        //             users: multipleMongooseToObject(users),
-        //             usecooki,
-        //         });
-        //     })
-        //     .catch(next);
     }
 
     //[Get] /update
