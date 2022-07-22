@@ -9,8 +9,9 @@ const passport = require('passport');
 const connectDB = require('./config/connectDB');
 
 const cors = require('cors');
+require('dotenv').config();
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 const route = require('./routes');
 
