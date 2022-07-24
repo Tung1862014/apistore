@@ -87,24 +87,24 @@ class StaffController {
         const formData = req.body;
         //const user = new Staff(formData);
         Promise.all([ db.User.create({
-            firstName: formData.firstName,
-            lastName: 'Tran',
-            email: formData.email,
+            fullName: formData.fullName,
+            userName: formData.fullName,
             password: formData.password,
-            address: 'Can Tho',
-            phone: '0123456789',
-            roleid: 'B',
+            email: formData.email,
+            address: 'An Giang',
+            birthday: null,
+            phone: null,
+            roles: null,
         })])
         .then(([ results]) =>
-            // res.json({numbers,results}),
-
+            // res.json({numbers,results})
             res.json(
             {
                 tt: 'thanh cong',
             }
             )
         )
-        .catch(err => res.send('that bai'))
+        .catch(err => res.send('that bai loi'))
         // user.save()
         //     .then(() => res.redirect('/staff'))
         //     .catch((error) => {

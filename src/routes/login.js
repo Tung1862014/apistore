@@ -4,9 +4,8 @@ const passport = require("passport");
 
 const loginController = require('../app/controllers/LoginController');
 //router.post('/test', loginController.test);
+require('dotenv').config();
 
-const CLIENT_URL = "http://localhost:3000/";
-//router.get('/logout', loginController.logout);
 
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
@@ -17,7 +16,7 @@ router.get("/login/failed", loginController.loginFailed);
 router.get("/logout", loginController.logoutGoogle);
 
 router.get("/google/callback", passport.authenticate("google", {
-      successRedirect: CLIENT_URL,
+      successRedirect: process.env.URL_REACT||'http://localhost:3000/',
       failureRedirect: "/login/failed",
     })
   );
@@ -26,7 +25,7 @@ router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }
 router.get(
     "/facebook/callback",
     passport.authenticate("facebook", {
-      successRedirect: CLIENT_URL,
+      successRedirect: process.env.URL_REACT,
       failureRedirect: "/login/failed",
     })
 );

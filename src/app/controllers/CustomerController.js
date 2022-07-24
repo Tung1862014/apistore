@@ -1,61 +1,47 @@
 const Customer = require('../models/Customer');
-const {
-    multipleMongooseToObject,
-    mongooseToObject,
-} = require('../../util/mongoose');
+// const {
+//     multipleMongooseToObject,
+//     mongooseToObject,
+// } = require('../../util/mongoose');
+
+const db = require('../../models')
+
 class CustomerController {
-    //[GET]  /customer
-    index(req, res, next) {
-        //
-        var perPage = 5;
-        var page = req.query.page || 1;
-        Customer.find({})
-                .skip((perPage * page) - perPage)
-                .limit(perPage).exec(function(err,customers){
-                    if(err) throw err;
-                    Customer.countDocuments({}).exec((err,Count)=>{          
-                        res.render('customer', {
-                            customers: multipleMongooseToObject(customers),
-                            pagination:{page, pageCount:Math.ceil(Count / perPage) },
-                            usecooki:req.cookies.nameuser,
-                        });
-            
-                    });
-            });
-        // Promise.all([Customer.find({}), req.cookies.nameuser])
-        //     .then(([customers, usecooki]) => {
-        //         res.render('customer', {
-        //             customers: multipleMongooseToObject(customers),
-        //             usecooki,
-        //         });
-        //     })
-        //     .catch(next);
+    //POST SIGN UP
+    insert(req, res, next) {
+        const formData = req.body;
+        Promise.all([db.User.create({
+            fullName: formData.fullName,
+            userName: formData.userName,
+            password: formData.password,
+            email: formData.email,
+            address: formData.address,
+            birthday: formData.birthday,
+            phone: formData.phone,
+            roles: 1,
+        })])
+
+        .then(([results]) => {
+            res.json(
+                {
+                    tt: 'thanh cong',
+                }
+            )
+        })
+        .catch(err => res.send('đăng ký thất bại'));
     }
-    search(req, res, next) {
-        //res.json(req.query.name)
-        var perPage = 5;
-        var page = req.query.page || 1;
-        Customer.find({name: req.query.name})
-                .skip((perPage * page) - perPage)
-                .limit(perPage).exec(function(err,customers){
-                    if(err) throw err;
-                    Customer.countDocuments({name: req.query.name}).exec((err,Count)=>{          
-                        res.render('customer', {
-                            customers: multipleMongooseToObject(customers),
-                            pagination:{page, pageCount:Math.ceil(Count / perPage) },
-                            usecooki:req.cookies.nameuser,
-                        });
-            
-                    });
-            });
-    }
-    //[PUT] /update/save
-    update(req, res, next) {
-        // res.json(req.body)
-        // res.json(req.params.id);
-        Customer.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.redirect('/customer'))
-            .catch(next);
+    //POST LOGIN
+    login(req, res, next){
+        Promise.all([ db.User.findOne({where: {userName: req.body.userName}})])
+        .then(([ result]) =>{
+            if(result){
+                res.json({result})
+            }else{
+                res.json({tt:'Tài khoản không tồn tại'})
+            } 
+        }
+        )
+            .catch(err => res.json({tt:'Tài khoản không tồn tại sss'}))
     }
 }
 

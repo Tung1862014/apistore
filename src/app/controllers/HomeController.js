@@ -18,10 +18,10 @@ const db = require('../../models')
 class  HomeController {
     
     //[GET]  /
-    index  (req, res, next) {
+    index (req, res, next)  {
        // res.json(req.query.q)
 
-     Promise.all([db.BillDetail.findAll()])
+     Promise.all([ db.BillDetail.findAll()])
             .then(([results]) =>
                 // res.json({numbers,results})
                 res.json(

@@ -5,7 +5,6 @@ require('dotenv').config();
 //     mongooseToObject,
 // } = require('../../util/mongoose');
 
-const CLIENT_URL = process.env.URL_REACT;
 
 class CustomerController {
     //[GET]  /staff
@@ -49,9 +48,8 @@ class CustomerController {
     }
 
     logoutGoogle(req, res, next) {
-       
             req.logout();
-            res.redirect(CLIENT_URL);
+            res.redirect(process.env.URL_REACT||'http://localhost:3000/');
           
     }
 
