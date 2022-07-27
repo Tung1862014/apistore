@@ -20,15 +20,15 @@ router.get("/google/callback", passport.authenticate("google", {
       failureRedirect: "/login/failed",
     })
   );
-router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
+// router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
 
-router.get(
-    "/facebook/callback",
-    passport.authenticate("facebook", {
-      successRedirect: process.env.URL_REACT,
-      failureRedirect: "/login/failed",
-    })
-);
+// router.get(
+//     "/facebook/callback",
+//     passport.authenticate("facebook", {
+//       successRedirect: process.env.URL_REACT,
+//       failureRedirect: "/login/failed",
+//     })
+// );
 // router.put('/update/save/:id', staffController.update);
 
 // router.get('/update/:id', staffController.edit);

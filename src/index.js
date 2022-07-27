@@ -38,7 +38,7 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: process.env.URL_REACT,
+    origin: "http://localhost:3000",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
@@ -47,7 +47,6 @@ app.use(
 app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'video')));
 
-app.use(cors());
 
 app.use(
   express.urlencoded({
