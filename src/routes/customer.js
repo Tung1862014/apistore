@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../middleware/customers');
 
 const customerController = require('../app/controllers/CustomerController');
 
@@ -7,7 +8,7 @@ const customerController = require('../app/controllers/CustomerController');
 
 // router.get('/search', customerController.search);
 
-router.post('/signup', customerController.insert);
+router.post('/signup',upload.array('image',12), customerController.insert);
 
 router.post('/login', customerController.login);
 
