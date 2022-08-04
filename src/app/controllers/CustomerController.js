@@ -127,7 +127,7 @@ class CustomerController {
                     // res.json(req.files)
                     const arr =  req.files;
                     arr.forEach(function(e, index, arr){
-                       paths = paths +`${process.env.URL_IMAGE_CUSTOMER}`+ e.filename +',';
+                       paths = paths + e.filename +',';
                     })
                     paths = paths.substring(0, paths.lastIndexOf(','));
                     formData.image = paths;
