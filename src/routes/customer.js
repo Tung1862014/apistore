@@ -12,4 +12,8 @@ router.post('/signup',upload.array('image',12), customerController.insert);
 
 router.post('/login', customerController.login);
 
+router.put('/user',upload.array('image'), customerController.update);
+
+router.put('/user/image',upload.array('image'), customerController.updateImage);
+
 module.exports = router;

@@ -12,14 +12,14 @@ let sequelize;
 
 const customizeConfig = {
   host: process.env.DB_HOST,
-  dialect: 'mysql',
+  dialect: 'postgres',
   logging: false,
-  // dialectOptions: {
-  //   ssl: {
-  //     require: true,
-  //     rejectUnauthorized: false
-  //   }
-  // }
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 }
 
 //sequelize = new Sequelize(process.env.DB_DATABASE_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD||null, customizeConfig);
