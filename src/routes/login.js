@@ -16,7 +16,7 @@ router.get("/login/failed", loginController.loginFailed);
 router.get("/logout", loginController.logoutGoogle);
 
 router.get("/google/callback", passport.authenticate("google", {
-      successRedirect: process.env.URL_REACT||'http://localhost:3000/',
+      successRedirect: process.env.URL_REACT,
       failureRedirect: "/login/failed",
     })
   );
