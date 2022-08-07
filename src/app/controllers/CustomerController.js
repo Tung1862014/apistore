@@ -20,7 +20,7 @@ class CustomerController {
             })])
             .then(([result]) =>{
                 if(result){
-                    const uploadImage  = uploadDir+ result.image;
+                    const uploadImage  = uploadDir+ result.image.split('/').slice(4,5);
                     console.log('iamge: '+uploadImage)
                     fs.unlink(uploadImage, (error) => {
                         // if any error
@@ -37,7 +37,7 @@ class CustomerController {
             // res.json(req.files)
             const arr =  req.files;
             arr.forEach(function(e, index, arr){
-               paths = paths + e.filename +',';
+               paths = paths + process.env.URL_IMAGE_CUSTOMER+ e.filename +',';
             })
             paths = paths.substring(0, paths.lastIndexOf(','));
             console.log("data: "+ paths)
@@ -127,7 +127,7 @@ class CustomerController {
                     // res.json(req.files)
                     const arr =  req.files;
                     arr.forEach(function(e, index, arr){
-                       paths = paths + e.filename +',';
+                       paths = paths + process.env.URL_IMAGE_CUSTOMER+ e.filename +',';
                     })
                     paths = paths.substring(0, paths.lastIndexOf(','));
                     formData.image = paths;
